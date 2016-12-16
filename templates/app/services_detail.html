@@ -1,0 +1,44 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Services || {{ service.service_name }}
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+            <div class="container">
+                <h3> Services Details</h3>
+                <hr>
+            </div>
+        </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+<!-- Services -->
+    <div class="main">
+    <div class="container">
+        <div class="section section-text">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        {{ service.service_name }}
+                    </h3>
+                    <p>
+                        <img src="{{ MEDIA_URL }}{{ service.service_image.url }}" alt="bl" class="img-responsive">
+                    </p>
+                    <p>
+                        {{ service.service_detail }} <!-- cservice.cservice_detail -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Services -->
+{% endblock %}

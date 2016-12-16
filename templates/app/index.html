@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header slider -->
+    {% include 'headerslider.html' %}
+    <!-- End Header slider -->
+{% endblock %}
+
+{% block content %}
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="title">Who we are ?</h2>
+                <h5 class="description">A brief description about the company and summary of what we Do</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info text-center">
+                        <div class="icon icon-primary">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <h4 class="info-title">About Us</h4>
+                        <p>
+                            {{ about.whoweare | truncatechars:200 }}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info text-center">
+                        <div class="icon icon-success">
+                            <i class="fa fa-arrow-circle-up"> </i>
+                        </div>
+                        <h4 class="info-title">Mission</h4>
+                        <p>
+                            {{ about.mission }}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info text-center">
+                        <div class="icon icon-danger">
+                            <i class="fa fa-eye"></i>
+                        </div>
+                        <h4 class="info-title">Vision</h4>
+                        <p>
+                            {{ about.vision }}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info text-center">
+                        <div class="icon icon-info">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <h4 class="info-title">History</h4>
+                        <p>
+                            {{ about.history }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="more-about">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="title">What we do ?</h2>
+                        {% for service in services %}
+                        <div class="info info-horizontal">
+                            <div class="icon icon-primary">
+                                <i class="fa fa-television"> </i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">{{ service.service_name }}</h4>
+                                <p>
+                                    {{ service.service_desc }}
+                                </p>
+                            </div>
+                        </div>
+                        {%endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="img-container">
+                            <img src="{% static 'img/office-space.png' %}" alt="img" class="img-responsive img-thumbnail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About -->
+    <!-- Blog news -->
+    <section class="blog bg-gray">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="title">Latest News</h2>
+                <h5 class="description">Our latest News, Publications and Activities Reviews</h5>
+            </div>
+            <div class="owl-carousel">
+                {% for post in posts %}
+                        {% if post.published == True %}
+                            <div class="item">
+                                <div class="card card-blog">
+                                    <div class="card-image">
+                                        <a href="{{ post.get_absolute_url }}">
+                                            <img class="img img-raised img-responsive" src="{{ MEDIA_URL }}{{ post.post_image.url }}" alt="img" />
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <h6 class="category text-info">{{ post.category }}</h6>
+                                        <p> <i class="fa fa-clock-o"></i> {{ post.date }} <span><i class="fa fa-user"> </i> {{ post.author }}</span></p>
+                                        <h4 class="card-title">
+                                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                            </h4>
+                                        <p class="card-description">
+                                            {{ post.meta_description }}<br>
+                                            <a href="{{ post.get_absolute_url }}"> Read More </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End Blog news -->
+    <!-- Clients -->
+    <section id="clients" class="section clients">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2 class="title">Trusted by Some Amazing People</h2>
+                <h5 class="description">would you like to know more about the clients we have rendered services to? check out their logos below</h5>
+            </div>
+            <div class="clients-logo">
+                <div class="slider">
+                    {% for client in feeds %}
+                        <div class="clients-content">
+                            <a href="{{ client.client_url }}"><img src="{{ MEDIA_URL }}{{ client.client_logo.url }}" alt=""></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 clients-text">
+                    <h2>What Our Customers Says</h2>
+                    <p>
+                        Would you like to know more of what clients say about our services, please read through our clients' testimonials from our social media
+                        <br> Would you like to know more of what clients say about our services, please read through our clients' testimonials from our social media
+                    </p>
+                </div>
+                <div class="col-md-6 col-md-offset-1">
+                    <div class="owl-carousel">
+                        <!-- single review loop through this with about feed data-->
+                        {% for clients in feeds  %}
+                            <div class="single-review text-center">
+                                <img src="{{ MEDIA_URL }}{{ clients.client_image.url }}" alt="" class="img-circle">
+                                <div class="review_content">
+                                    <blockquote>{{ clients.client_feed }}</blockquote>
+                                    <div class="review-author">{{ clients.client_name }}</div>
+                                    <div class="review-author">{{ clients.client_position }} / {{ clients.client_company }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- //single review -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End clients -->
+    <!-- Trail / Subscribe / contact us -->
+    <section class="trial" id="trial">
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-8 trial-text wow slideInLeft">
+                    <h2 class="trial-title">Aimurafaty Group is exactly what you need.</h2>
+                </div>
+                <div class="col col-sm-4 text-center wow slideInRight">
+                    <a href="/app/contact/" class="btn btn-warning btn-lg trial-btn">Contact Us Now</a>
+                    <!--<button class="btn btn-warning btn-lg trial-btn">Contact Us Now</button>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End trail -->
+{% endblock %}

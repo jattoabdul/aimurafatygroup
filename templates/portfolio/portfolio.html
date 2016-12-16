@@ -1,0 +1,61 @@
+{% extends "base2.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Gallery
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+            <div class="container">
+                <h3>Our Gallery</h3>
+                <hr>
+            </div>
+        </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+    <!-- Portfolio -->
+    <div class="portfolio">
+        <div class="portfolio-1">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="title">Our Gallery</h2>
+                    <h5 class="description">Learn everything you need to know about our work experience visually</h5>
+                </div>
+                <div class="portfolio-four-col">
+                    {% if gallery %}
+                        <div class="row">
+                            {% for work in gallery %}
+                                {% if work.is_public == True %}
+                                <!--loop through this div below with project list-->
+                                <div class="col col-md-6 col-sm-6 text-center">
+                                    <div class="" data-my-order="1">
+                                        <div class="portfolio-item">
+                                            <img src="{{ work.project_image.url }}" alt="" class="img-responsive">
+                                            <div class="overlay"></div>
+                                            <div class="portfolio-caption">
+                                                <div class="text-center">
+{#                                                    <button class="btn btn-fab btn-fab-mini"> <i class="fa fa-search-plus"></i></button>#}
+                                                    <p>
+                                                        {{ work.name }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Portfolio -->
+{% endblock %}

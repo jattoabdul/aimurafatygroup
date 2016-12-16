@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<footer class="footer section">
+    <div class="container footer-widget">
+        <div class="row">
+            <div class="col col-sm-3">
+                <a href="#"><img src="{% static 'img/logo.png' %}" alt="Company logo" class="footer-logo img-responsive"></a>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+                <!-- /Social -->
+                <hr class="up-hr">
+                <button href="#" class="btn btn-primary light btn-sm">Make Enquiry</button>
+            </div>
+            <div class="col col-sm-3">
+                <h6 class="typo-light hd"> Contact Address</h6>
+                <p>
+                    108, Opomalu Road, Ilorin,
+                    <br> Kwara State, Nigeria
+                </p>
+                <p> Reach Us @
+                    <br> +234-803-354-5814
+                    <br> Mon - Fri, 08:00-20:00
+                </p>
+            </div>
+            <div class="col col-sm-3">
+                <h6 class="typo-light hd">Quick Link</h6>
+                <ul class="list-1">
+                    <li><a href="/app/blog/">News</a></li>
+                    <li><a href="/app/services/">Services</a></li>
+                    <li><a href="/app/staff/">Staff</a></li>
+                    <li><a href="/app/privacy/">Privacy</a></li>
+                    <li><a href="/app/terms/">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col col-sm-3">
+                <div class="newsletter">
+                    <h6 class="typo-light">Newsletter</h6>
+                    <p>Sign up For the latest ideas and perspectives from our specialists</p>
+                    <div id="subscribe-success"></div>
+                    <form class="form-widget subscribe-form">
+                        <div class="field-group">
+                            <input type="email" class="form-control" placeholder="Enter Your Email">
+                            <button type="submit" id="submit" class="btn footer-btn btn-primary"><i class="fa fa-envelope-o"></i></button>
+                        </div>
+                        <div class="msg-wrp"></div>
+                    </form>
+                    <!-- /form -->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright © 2016 Aimurafaty Group. All Rights Reserved.
+            <span>Built with <i class="fa fa-heart"></i> by  <a href="http://irshaadtech.com">IrshaadTechnologies</a></span>
+        </p>
+    </div>
+</footer>

@@ -1,0 +1,127 @@
+{% load staticfiles %}
+<!-- Right sidebar -->
+<div class="col col-md-4">
+    <!-- most / recent posts -->
+    <div class="row">
+        <div class="col col-lg-12 col-md-12 col-sm-6">
+            <span class="widget-space"></span>
+            <!-- Most Recent commented widget -->
+            <div class="card widget">
+                <div class="header header-danger text-center">
+                    <h3 class="widget-header-title"> <i class="fa fa-comments"> </i> Most Recent News</h3>
+                </div>
+                {% if posts %}
+                    <div class="content">
+                    {% for post in posts %}
+                        {% if post.published == True %}
+                            <div class="row">
+                                <div class="col col-xs-4">
+                                    <img src="{{ MEDIA_URL }}{{ post.post_image.url }}" alt="blog image" class="img-responsive">
+                                </div>
+                                <div class="col col-xs-8">
+                                    <a href="{{ post.get_absolute_url }}">
+                                        <h3 class="widget-title">
+                                            {{ post.title }}
+                                        </h3>
+                                    </a>
+                                    <span><i class="fa fa-comments"></i>{{ post.comments.count }}</span>
+                                    <!--<span><i class="fa fa-eye"></i> 2342</span>-->
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <hr>
+                </div>
+                {% else %}
+                    <div class="content">
+                        <div class="row">
+                            <div class="col col-xs-12">
+                                <a href="blog-details.html">
+                                    <h3 class="widget-title">
+                                        No Post Yet, Check Later
+                                    </h3>
+                                </a>
+                                <span><i class="fa fa-comments"></i>0</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+            <!-- End most Recent commented widget -->
+        </div>
+    </div>
+    <!-- end most / recent posts -->
+    <!-- categories list & enquiry form -->
+    <div class="row">
+        <!-- categories list -->
+        <div class="col col-lg-12 col-md-12 col-sm-6">
+            <span class="widget-space"></span>
+            <!-- Tag/Category cloud widget -->
+            <div class="card widget tag-cloud">
+                <div class="header header-success text-center">
+                    <h3 class="widget-header-title"> <i class="fa fa-tags"> </i> Categories Cloud</h3>
+                </div>
+                <div class="content">
+                    {% if categories %}
+                        {% for category in categories %}
+                            <a href="{{ category.get_absolute_url }}" class="btn btn-primary">{{ category.title }}</a>
+                        {% endfor %}
+                    {% else %}
+                        <a href="/app/blog/">No Categories</a>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- End tag/Category cloud widget -->
+        </div>
+        <!-- end categories list -->
+        <!-- enquiry form -->
+        <!-- <div class="col col-lg-12 col-md-12 col-sm-6">
+            <span class="widget-space"></span>
+            <div class="card card-signup">
+                <form role="form" class="form"  method="POST">{% csrf_token %}
+                    <div class="header header-info text-center">
+                        <h3 class="widget-header-title"> <i class="fa fa-microphone "> </i> Enquiry Form</h3>
+                    </div>
+                    <div class="content">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                            <div class="form-group label-floating is-empty">
+                                <input type="text" class="form-control" name="contact_name" id="contact_name" placeholder="First Name..."><span class="material-input"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <i class="fa fa-envelope-o"></i>
+                        </span>
+                            <div class="form-group is-empty">
+                                <input type="text" class="form-control" name="contact_email" id="contact_email" placeholder="Email..."><span class="material-input"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <i class="fa fa-file-text"></i>
+                        </span>
+                            <div class="form-group is-empty">
+                                <textarea class="form-control" placeholder="Question..." name="content" id="content" cols="30" rows="4"></textarea><span class="material-input"></span>
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="optionsCheckboxes" checked> Subscribe to newsletter
+                            </label>
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        <button type="submit" class="btn btn-primary">Contact Us Now</button>
+                    </div>
+                </form>
+            </div>
+        </div> -->
+        <!-- end enquiry form -->
+    </div>
+    <!-- end categories list &enquiry form -->
+</div>
+<!-- End right sidebar -->

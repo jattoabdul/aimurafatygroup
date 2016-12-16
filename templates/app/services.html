@@ -1,0 +1,91 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Services
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+        <div class="container">
+            <h3> Services</h3>
+            <hr>
+        </div>
+    </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+    <!-- Services -->
+    <div class="services">
+        <!-- Full Service -->
+        <div class="services-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Our Amazing Services</h2>
+                        <h5 class="description">some amazing description about the kind of services we render at aimurafaty groups of company</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for service in services %}
+                    <div class="col-md-4">
+                        <div class="info info-horizontal">
+                            <div class="icon icon-primary">
+                                <i class="fa fa-desktop"></i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">{{ service.service_name }}</h4>
+                                <p>
+                                    {{ service.service_desc }}
+                                </p>
+                                <a href="{% url 'services_detail' pk=service.pk %}">Read more...</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- End container -->
+        </div>
+        <!--end Full Services-->
+        <!-- consultancy Service -->
+        <div class="services-2 bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Consultancy Services</h2>
+                        <h5 class="description">our proffesional experts provide cheap consultancy services</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <img src="{% static 'img/office-space.png' %}" alt="" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="col-md-5">
+                        {% for cservice in cservices %}
+                            <div class="info info-horizontal">
+                            <div class="icon icon-info">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">{{ cservice.cservice_name }}</h4>
+                                <p class="description">
+                                    {{ cservice.cservice_desc }}
+                                </p>
+                                <a href="{% url 'cservices_detail' pk=cservice.pk %}">Read more...</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- End container -->
+        </div>
+        <!--end Consultancy Services-->
+    </div>
+    <!-- End Services -->
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<nav id="sticky-nav" class="navbar navbar-custom sticky navbar-center">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="" href="#">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="img-responsive navbar-brand">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation-example">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/app/">Home</a></li>
+                <li><a href="/app/about/">About</a></li>
+                <li><a href="/app/services">Services</a></li>
+                <li><a href="/app/portfolio/">Gallery</a></li>
+                <li><a href="/app/blog/">News</a></li>
+                <li><a href="/app/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

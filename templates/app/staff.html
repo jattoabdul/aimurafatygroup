@@ -1,0 +1,71 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Staff
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+            <div class="container">
+                <h3>Our Staff</h3>
+                <hr>
+            </div>
+        </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+     <!-- Team -->
+    <section class="section" id="team">
+        <div class="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center wow fadeInUp">
+                        <h2 class="title">Our Awesome Staff</h2>
+                        <h5 class="description">Our diligent workforce here at aimurafaty groups of company</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for team in staff %}
+                        <div class="col-md-4">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#link">
+                                    <img class="img" src="{{ MEDIA_URL }}{{ team.image_url.url }}" alt="team" />
+                                </a>
+                            </div>
+                            <div class="content text-center">
+                                <h4 class="card-title">{{ team.first_name }} {{ team.last_name }}</h4>
+                                <h6 class="category text-muted">{{ team.position }}</h6>
+                                <p class="card-description">
+                                    {{ team.bio }}
+                                </p>
+                                <div class="footer">
+                                    <a href="http://www.facebook.com/{{ team.fb_username }}" target="_blank" class="btn btn-just-icon btn-facebook btn-round">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="https://twitter.com/@{{ team.twitter_handle }}" target="_blank" class="btn btn-just-icon btn-twitter btn-round">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/{{ team.linkedin_username }}" target="_blank" class="btn btn-just-icon btn-linkedin btn-round">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://dribbble.com/{{ team.dribble_username }}" target="_blank" class="btn btn-just-icon btn-dribbble btn-round">
+                                        <i class="fa fa-dribbble"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End team -->
+{% endblock %}

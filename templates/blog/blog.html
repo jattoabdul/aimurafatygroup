@@ -1,0 +1,101 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    News
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+            <div class="container">
+                <h3>Our News and Events </h3>
+                <hr>
+            </div>
+        </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+    <!-- Blog -->
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <!-- Blog Content -->
+                {% if posts %}
+                <div class="col col-md-8">
+                    {% for post in posts %}
+                        {% if post.published == True %}
+                            <article>
+                                <div class="row">
+                                    <div class="col col-sm-4  post-thumbnail">
+                                        <a href="{{ post.get_absolute_url }}">
+                                            <img src="{{ MEDIA_URL }}{{ post.post_image.url }}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="col col-sm-8">
+                                        <h4 class="card-title">
+                                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                    </h4>
+                                        <div class="blog-meta">
+                                            <span><i class="fa fa-clock-o"> </i> {{ post.date }}</span>
+                                            <span><i class="fa fa-user"> </i> {{ post.author }}</span>
+                                            <span class="category"><i class="fa fa-tag"> </i><a href="#">{{ post.category }}</a></span>
+                                        </div>
+                                        <p>
+                                            {{ post.meta_description }}
+                                            <br><a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-raised">Read more...</a>
+                                            <span>
+                                                <a href="{% url 'view_blog_post' slug=post.slug %}" class="btn btn-primary btn-raised">
+                                                    Post comment
+                                                </a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </article>
+                        {% endif %}
+                    {% endfor %}
+                    <ul class="pagination pagination-primary">
+                        {% if posts.has_previous %}
+                            <li><a href="?page={{ posts.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                        {% endif %}
+                        {% for i in posts.paginator.page_range %}
+                            {% if posts.number == i %}
+                                <li class="active"><a href="#">{{ i }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if posts.has_next %}
+                            <li><a href="?page={{ posts.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% else %}
+                    <article>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <h4 class="card-title">
+                                    <a href="blog-details.html">There are no posts.</a>
+                                </h4>
+                                <p>
+                                    check back later, There are no posts currently.
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                    </article>
+                {% endif %}
+                <!-- End blog content -->
+                <!-- sidebar -->
+                {% include 'sidebar.html' %}
+                <!-- end sidebar -->
+            </div>
+        </div>
+    </div>
+    <!-- End blog -->
+{% endblock %}

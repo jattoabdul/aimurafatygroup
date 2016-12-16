@@ -1,0 +1,195 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    About-Us
+{% endblock %}
+{% block header %}
+    <!-- nav -->
+    {% include 'nav.html' %}
+    <!-- End nav -->
+    <!-- Header Hero/ Header Filter -->
+    <div class="header-hero">
+            <div class="container">
+                <h3>About Us</h3>
+                <hr>
+            </div>
+        </div>
+    <!-- End Header Hero -->
+{% endblock %}
+
+{% block content %}
+    <!-- About -->
+    <div class="about">
+        <div class="container">
+            <div class="about-us">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Who we are ?</h2>
+                        <p>
+                            {{ about.whoweare }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Our mission -->
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <img src="{% static 'img/office-space.png' %}" alt="" class="img-responsive img-thumbnail img-about">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title"> Our Mission Statements </h2>
+                        <div id="acordeon">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-border panel-default" role="tablist">
+                                    <div class="panel-heading" role="tab">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+                                            <h4 class="panel-title">What we do ? <i class="fa fa-angle-up"></i> </h4>
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true" role="tabpanel">
+                                        <div class="panel-body">
+                                            <p>
+                                                {{ about.whatwedo }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-border panel-default" role="tablist">
+                                    <div class="panel-heading" role="tab">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne" class="collapsed" aria-expanded="false">
+                                            <h4 class="panel-title">Mission <i class="fa fa-angle-up"></i></h4>
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" role="tabpanel">
+                                        <div class="panel-body">
+                                            <ul class="about-ul">
+                                                <li><i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    {{ about.mission }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-border panel-default" role="tablist">
+                                    <div class="panel-heading" role="tab">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne" class="collapsed" aria-expanded="false">
+                                            <h4 class="panel-title">Vision <i class="fa fa-angle-up"></i></h4>
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" role="tabpanel">
+                                        <div class="panel-body">
+                                            <p>
+                                                {{ about.vision }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-border panel-default" role="tablist">
+                                    <div class="panel-heading" role="tab">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseOne" class="collapsed" aria-expanded="false">
+                                            <h4 class="panel-title">Core Values <i class="fa fa-angle-up"></i></h4>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" role="tabpanel">
+                                        <div class="panel-body">
+                                            <ul class="about-ul">
+                                                <li><i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                    {{ about.corevalues }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  end acordeon -->
+                    </div>
+                </div>
+                <!-- End mission -->
+            </div>
+        </div>
+        <!-- Our skill -->
+        <section class="bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="title">Our skills</h2>
+                        <h5 class="description">Our Field of Specialization and Proficiency level are as follows</h5>
+                    </div>
+                    <div class="col col-md-6 col-md-push-6">
+                        <img src="{% static 'img/bg2.jpg' %}" alt="" class="img-responsive img-thumbnail img-about">
+                    </div>
+                    <div class="col col-md-6 col-md-pull-6">
+                        <h3>What can we do ?</h3>
+                        <p class="description">
+                            we can offers you assuring confidence in the following areas of specialities
+                        </p>
+                        {% for skill in skills %}
+                        <div class="skills-lists">
+                            <div class="skill-1">
+                                <h4>{{ skill.service_name }}</h4>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.service_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.service_percent }}%;">
+                                        <span class="skill-bar-text">{{ skill.service_percent }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End our skill -->
+        <!-- Team -->
+        <section class="section" id="team">
+            <div class="team">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center wow fadeInUp">
+                            <h2 class="title">Our Awesome Staff</h2>
+                            <h5 class="description">Our diligent workforce here at aimurafaty groups of company</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for team in staff %}
+                            <div class="col-md-4">
+                                <div class="card card-profile">
+                                    <div class="card-avatar">
+                                        <a href="#link">
+                                            <img class="img" src="{{ MEDIA_URL }}{{ team.image_url.url }}" alt="team" />
+                                        </a>
+                                    </div>
+
+                                    <div class="content text-center">
+                                        <h4 class="card-title">{{ team.first_name }} {{ team.last_name }}</h4>
+                                        <h6 class="category text-muted">{{ team.position }}</h6>
+                                        <p class="card-description">
+                                            {{ team.bio }}
+                                        </p>
+                                        <div class="footer">
+                                            <a href="http://www.facebook.com/{{ team.fb_username }}" target="_blank" class="btn btn-just-icon btn-facebook btn-round">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a href="https://twitter.com/@{{ team.twitter_handle }}" target="_blank" class="btn btn-just-icon btn-twitter btn-round">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                            <a href="https://www.linkedin.com/in/{{ team.linkedin_username }}" target="_blank" class="btn btn-just-icon btn-linkedin btn-round">
+                                                <i class="fa fa-linkedin"></i>
+                                            </a>
+                                            <a href="https://dribbble.com/{{ team.dribble_username }}" target="_blank" class="btn btn-just-icon btn-dribbble btn-round">
+                                                <i class="fa fa-dribbble"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End team -->
+    </div>
+    <!-- End about -->
+{% endblock %}
