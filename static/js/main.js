@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 
     // PRELOADER      
     $(window).load(function() {
-        $('#preloader').fadeOut('slow', function() {
+        $('#preloader').fadeOut('fast', function() {
             $(this).remove();
         });
     });
