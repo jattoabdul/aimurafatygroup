@@ -1,11 +1,16 @@
 from django.contrib import admin
 from app.models import About, Staff, AboutFeed, Consultancyservice, Service
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.db import models
 
 
 # Register your models here.
 class AboutAdmin(admin.ModelAdmin):
     list_display = ('history', 'mission', 'vision')
     search_fields = ('whoweare', 'history')
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorUploadingWidget},
+    }
 
 
 class AboutFeedAdmin(admin.ModelAdmin):
@@ -16,6 +21,9 @@ class AboutFeedAdmin(admin.ModelAdmin):
 class StaffAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'position', 'email', 'fb_username', 'image_url')
     search_fields = ('first_name', 'last_name', 'position', 'email', 'bio')
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorUploadingWidget},
+    }
 
 
 class ServiceAdmin(admin.ModelAdmin):
