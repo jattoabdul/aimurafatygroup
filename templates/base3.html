@@ -53,26 +53,16 @@
     <script src="{% static 'js/wow.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/material.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery.mixitup.min.js' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy3nzEvjRPcqlD1-AUvf6teAiMdwbv_cM&callback=initMap" async defer></script>
     <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
-{#    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>#}
-{#    <script>tinymce.init({ selector:'textarea' });</script>#}
     <!-- Google Map Script -->
     <script>
-    /*Google Map*/
-
-    var lat = 8.5110000;
-    var long = 4.5370000;
-
-    var centerLong = long;
-
-    var myLatlng = new google.maps.LatLng(lat, long);
-    var centerPosition = new google.maps.LatLng(lat, centerLong);
-
-    var mapOptions = {
-        zoom: 14,
-        center: centerPosition,
-        styles: [{
+      function initMap() {
+        var aimurafaty = {lat: 8.5110000, lng: 4.5370000};
+        var map = new google.maps.Map(document.getElementById('contactUsMap'), {
+          zoom: 14,
+          center: aimurafaty,
+          styles: [{
             featureType: 'all',
             stylers: [{
                 saturation: -80
@@ -93,14 +83,12 @@
             }]
         }],
         scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-    }
-    var map = new google.maps.Map(document.getElementById("contactUsMap"), mapOptions);
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title: "Hello World!"
-    });
-    marker.setMap(map);
+        });
+        var marker = new google.maps.Marker({
+          position: aimurafaty,
+          map: map
+        });
+      }
     </script>
 </body>
 
